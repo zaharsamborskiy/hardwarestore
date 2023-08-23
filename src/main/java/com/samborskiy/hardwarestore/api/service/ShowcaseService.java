@@ -1,15 +1,14 @@
 package com.samborskiy.hardwarestore.api.service;
 
-import com.samborskiy.hardwarestore.store.repository.ShowcaseRepository;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Service;
+import com.samborskiy.hardwarestore.store.model.Showcase;
+import org.springframework.http.ResponseEntity;
+
+import java.util.UUID;
 
 
-@Service
-@RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ShowcaseService {
-    ShowcaseRepository showcaseRepository;
+public interface ShowcaseService {
+    ResponseEntity<?> createShowcase(Showcase showcase);
+    ResponseEntity<?> getAllShowcases();
+    ResponseEntity<?> updateShowcase(Showcase showcase, UUID id);
+    ResponseEntity<?> deleteShowcase(UUID id);
 }

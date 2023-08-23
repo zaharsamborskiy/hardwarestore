@@ -4,7 +4,7 @@ create_at timestamp not null,
 last_update_at timestamp not null,
 name varchar(255) not null,
 position_product varchar(255) not null,
-price int4 not null,
+price float8 not null,
 type_product varchar(255) not null,
 showcase_id uuid not null,
 primary key (id)
