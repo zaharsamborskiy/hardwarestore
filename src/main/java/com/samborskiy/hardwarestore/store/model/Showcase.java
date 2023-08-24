@@ -1,19 +1,23 @@
 package com.samborskiy.hardwarestore.store.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.samborskiy.hardwarestore.store.model.enums.TypeShowcases;
-import com.sun.istack.internal.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity @Table(name = "showcase")
 @Getter @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Showcase {
 
     @Id
@@ -32,9 +36,13 @@ public class Showcase {
     @Column(name = "type", nullable = false)
     TypeShowcases type;
 
+    @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
+    Date createAt;
 
+    @LastModifiedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "last_update_at", nullable = false)
-    LocalDateTime lastUpdateAt;
+    Date lastUpdateAt;
 }

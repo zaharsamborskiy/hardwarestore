@@ -1,18 +1,24 @@
 package com.samborskiy.hardwarestore.store.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.samborskiy.hardwarestore.store.model.enums.PositionProduct;
 import com.samborskiy.hardwarestore.store.model.enums.TypeProduct;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity @Table(name = "product")
 @Getter @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Product {
 
     @Id
@@ -38,9 +44,13 @@ public class Product {
     @Column(name = "price", nullable = false)
     Double price;
 
+    @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
+    Date createAt;
 
+    @LastModifiedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "last_update_at", nullable = false)
-    LocalDateTime lastUpdateAt;
+    Date lastUpdateAt;
 }
