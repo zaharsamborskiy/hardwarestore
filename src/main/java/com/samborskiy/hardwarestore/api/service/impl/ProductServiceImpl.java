@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,17 +44,17 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<?> updateProduct(Product product, Long id) {
         Product productFromDatabase = productRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Product with id " + id + " not found"));
-        Product toSave = saveProduct(productFromDatabase, product);
-        productRepository.save(toSave);
-        return ResponseEntity.status(HttpStatus.CREATED).body(toSave);
+        Product saveProduct = saveProduct(productFromDatabase, product);
+        productRepository.save(saveProduct);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saveProduct);
     }
     @Override
     public ResponseEntity<?> deleteProduct(Long id){
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent())  {
-            productRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else throw new BadRequestException("Product with id " + id + " not found");
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Product with id " + id + " not found"));
+        productRepository.delete(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @Override
@@ -73,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getAllProductsByGreaterPrice(Double price) {
+    public List<ProductDTO> getAllProductsGreaterPrice(Double price) {
         return productRepository.findAll()
                 .stream()
                 .filter(product -> product.getPrice() <= price)
@@ -82,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getAllProductsByLessPrice(Double price) {
+    public List<ProductDTO> getAllProductsLessPrice(Double price) {
         return productRepository.findAll()
                 .stream()
                 .filter(product -> product.getPrice() >= price)

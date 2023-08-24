@@ -10,5 +10,4 @@ import java.util.UUID;
 @Repository
 public interface ShowcaseRepository extends JpaRepository<Showcase, UUID> {
     Optional<Showcase> findById(UUID id);
-    void deleteById(UUID id);
 }

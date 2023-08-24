@@ -1,6 +1,7 @@
 package com.samborskiy.hardwarestore.api.controllers;
 
 import com.samborskiy.hardwarestore.api.dto.ProductDTO;
+import com.samborskiy.hardwarestore.api.exceptions.BadRequestException;
 import com.samborskiy.hardwarestore.api.service.ProductService;
 import com.samborskiy.hardwarestore.store.model.Product;
 import com.samborskiy.hardwarestore.store.model.Showcase;
@@ -30,16 +31,19 @@ public class ProductController {
         return productService.getAllProductsByType(typeProduct);
     }
     @GetMapping("/product/greaterPrice")
-    public List<ProductDTO> getAllProductsByGreaterPrice(@RequestParam(required = false) Double price) {
-        return productService.getAllProductsByGreaterPrice(price);
+    public List<ProductDTO> getAllProductsByGreaterPrice(@RequestParam(required = false) double price) {
+        if (price < 0) throw new BadRequestException("price will be greater 0");
+        return productService.getAllProductsLessPrice(price);
     }
     @GetMapping("/product/lessPrice")
-    public List<ProductDTO> getAllProductsByLessPrice(@RequestParam(required = false) Double price) {
-        return productService.getAllProductsByLessPrice(price);
+    public List<ProductDTO> getAllProductsByLessPrice(@RequestParam(required = false) double price) {
+        if (price < 0) throw new BadRequestException("price will be greater 0");
+        return productService.getAllProductsGreaterPrice(price);
     }
     @GetMapping("/product/price")
     public List<ProductDTO> getAllProductsByPrice(@RequestParam(name = "lessPrice", required = false) Double less,
                                                   @RequestParam(name = "greaterPrice", required = false) Double greater) {
+        if (less < 0 || greater < 0) throw new BadRequestException("price will be greater 0");
         return productService.getAllProductsByFilterPrice(less, greater);
     }
 

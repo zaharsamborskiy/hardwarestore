@@ -19,9 +19,9 @@ public interface ProductService {
 
     List<ProductDTO> getAllProductsByType(TypeProduct typeProduct);
 
-    List<ProductDTO> getAllProductsByGreaterPrice(Double price);
+    List<ProductDTO> getAllProductsLessPrice(Double price);
 
-    List<ProductDTO> getAllProductsByLessPrice(Double price);
+    List<ProductDTO> getAllProductsGreaterPrice(Double price);
 
     List<ProductDTO> getAllProductsByFilterPrice(Double less, Double greater);
 }

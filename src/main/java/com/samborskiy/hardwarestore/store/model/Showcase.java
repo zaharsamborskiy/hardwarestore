@@ -10,7 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity @Table(name = "showcase")
@@ -37,12 +37,12 @@ public class Showcase {
     TypeShowcases type;
 
     @CreatedDate
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "create_at", nullable = false)
-    Date createAt;
+    LocalDate createAt;
 
     @LastModifiedDate
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "last_update_at", nullable = false)
-    Date lastUpdateAt;
+    LocalDate lastUpdateAt;
 }
