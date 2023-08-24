@@ -26,21 +26,21 @@ REST-сервис должен предоставляет следующие м�
 @Getmapping("/showcases) getAllShowcases()
 - Получить все витрины
 @GetMapping("/showcases/type") getAllShowcasesByType()
--- возможность фильтрации по типу
+- возможность фильтрации по типу
 @GetMapping("/showcases/address") getAllShowcasesByAddress()
--- возможность получить витрины по адресу
+- возможность получить витрины по адресу
 @GetMapping("/showcases/createAt") getAllShowcasesByCreateDate()
--- возможность получить витрины за период по дате создания
+- возможность получить витрины за период по дате создания
 @GetMapping("/showcases/updateAt") getAllShowcasesByLastUpdatedDate()
--- возможность получить витрины за период по дате последней актуализации
+- возможность получить витрины за период по дате последней актуализации
  @GetMapping("/products/{showcase_id}") getAllProductsOnShowcase()
 - Получить все товары витрины
 @GetMapping("/product/type") getAllProductsByType()
--- возможность фильтрации по типу товара
+- возможность фильтрации по типу товара
 @GetMapping("/product/greaterPrice") getAllProductsByGreaterPrice()
 @GetMapping("/product/lessPrice") getAllProductsByLessPrice()
 @GetMapping("/product/price") getAllProductsByPrice()
--- возможность фильтрации по диапозону цен
+- возможность фильтрации по диапозону цен
 @PostMapping("/showcase") createShowcase()
 - Добавить витрину
 @PostMapping("/product") addProductOnShowcase()
