@@ -25,6 +25,7 @@ REST-сервис должен предоставляет следующие м�
 
 -@Getmapping("/showcases) getAllShowcases()
 Получить все витрины
+
 -@GetMapping("/showcases/type") getAllShowcasesByType()
  возможность фильтрации по типу
 -@GetMapping("/showcases/address") getAllShowcasesByAddress()
