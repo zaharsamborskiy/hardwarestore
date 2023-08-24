@@ -37,9 +37,9 @@ REST-сервис должен предоставляет следующие м�
 - Получить все товары витрины
 @GetMapping("/product/type") getAllProductsByType()
 - возможность фильтрации по типу товара
-@GetMapping("/product/greaterPrice") getAllProductsByGreaterPrice()
-@GetMapping("/product/lessPrice") getAllProductsByLessPrice()
-@GetMapping("/product/price") getAllProductsByPrice()
+--@GetMapping("/product/greaterPrice") getAllProductsByGreaterPrice()
+--@GetMapping("/product/lessPrice") getAllProductsByLessPrice()
+--@GetMapping("/product/price") getAllProductsByPrice()
 - возможность фильтрации по диапозону цен
 @PostMapping("/showcase") createShowcase()
 - Добавить витрину
